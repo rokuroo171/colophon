@@ -1,0 +1,32 @@
+---
+import { getCollection, render } from "astro:content";
+import ReleaseLayout from "../../layouts/ReleaseLayout.astro";
+
+export async function getStaticPaths() {
+  const releases = await getCollection("releases");
+  return releases.map((entry) => ({
+    params: { slug: entry.id.replace(/\.md$/, "") },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<ReleaseLayout
+  title={entry.data.title}
+  kind={entry.data.kind}
+  version={entry.data.version}
+  status={entry.data.status}
+  tagline={entry.data.tagline}
+  repo={entry.data.repo}
+  download={entry.data.download}
+  features={entry.data.features}
+  changelog={entry.data.changelog}
+  installTabs={entry.data.installTabs}
+  lang="en"
+>
+  <Content />
+</ReleaseLayout>
+

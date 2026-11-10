@@ -1,0 +1,26 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import site from "../../config/site.json";
+---
+
+<BaseLayout title="Blog" description={`Updates, announcements, and notes from ${site.name}.`} lang="en">
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+    <h1 class="font-heading text-3xl sm:text-4xl font-semibold text-ink mb-6">Blog</h1>
+    <p class="text-stone text-lg leading-relaxed mb-12">
+      [PLACEHOLDER: Notes on software craft, release reflections, and open-source updates from {site.name}.]
+    </p>
+
+    <div class="space-y-8">
+      <article class="p-6 bg-card border border-line rounded-lg">
+        <time datetime="2026-11-01" class="text-xs font-mono text-stone">November 1, 2026</time>
+        <h2 class="font-heading text-xl font-semibold text-ink mt-2 mb-2">
+          [PLACEHOLDER: Welcome to Colophon]
+        </h2>
+        <p class="text-stone text-sm leading-relaxed">
+          [PLACEHOLDER: Setting out our vision as an indie publisher of open-source tools and services.]
+        </p>
+      </article>
+    </div>
+  </section>
+</BaseLayout>
+

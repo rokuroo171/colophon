@@ -1,0 +1,66 @@
+---
+interface Props {
+  title: string;
+  kind: "desktop" | "service" | "tool";
+  version: string;
+  status: "alpha" | "beta" | "stable";
+  tagline: string;
+  slug: string;
+  lang?: string;
+}
+
+const { title, kind, version, status, tagline, slug, lang = "en" } = Astro.props;
+const isId = lang === "id";
+const href = isId ? `/id/releases/${slug}/` : `/releases/${slug}/`;
+
+const kindLabels = {
+  desktop: isId ? "Aplikasi Desktop" : "Desktop App",
+  service: isId ? "Layanan" : "Service",
+  tool: isId ? "Perkakas" : "Tool",
+};
+
+const statusLabels = {
+  stable: isId ? "Stabil" : "Stable",
+  beta: "Beta",
+  alpha: "Alpha",
+};
+
+const statusStyles = {
+  stable: "bg-forest/10 text-forest",
+  beta: "bg-terracotta/10 text-terracotta",
+  alpha: "bg-sand text-stone",
+};
+---
+
+<article class="p-6 bg-card border border-line rounded-lg flex flex-col justify-between hover:border-stone/40 transition-colors duration-200">
+  <div>
+    <div class="flex items-center justify-between gap-2 mb-3">
+      <span class="inline-block px-2.5 py-0.5 text-xs font-mono font-medium uppercase tracking-wide rounded bg-sand text-stone">
+        {kindLabels[kind]}
+      </span>
+      <span class={`inline-block px-2.5 py-0.5 text-xs font-mono font-medium rounded ${statusStyles[status]}`}>
+        {statusLabels[status]} &middot; v{version}
+      </span>
+    </div>
+
+    <h3 class="font-heading text-xl font-semibold text-ink mb-2">
+      <a href={href} class="no-underline hover:text-terracotta text-ink">
+        {title}
+      </a>
+    </h3>
+
+    <p class="text-sm text-stone leading-relaxed mb-6">
+      {tagline}
+    </p>
+  </div>
+
+  <div>
+    <a
+      href={href}
+      class="inline-flex items-center gap-1.5 text-sm font-medium text-terracotta hover:text-forest transition-colors duration-200"
+    >
+      {isId ? "Lihat detail rilis" : "View release"} &rarr;
+    </a>
+  </div>
+</article>
+

@@ -1,0 +1,168 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReleaseCard from "../../components/ReleaseCard.astro";
+import site from "../../config/site.json";
+import { getCollection } from "astro:content";
+
+const releases = await getCollection("releases_id");
+---
+
+<BaseLayout title={site.name} description={site.descriptionId} lang="id">
+  <!-- Hero Section -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
+    <div class="max-w-3xl">
+      <h1 class="font-heading text-4xl sm:text-6xl font-semibold text-ink leading-tight mb-6">
+        {site.taglineId}
+      </h1>
+      <p class="text-xl text-stone leading-relaxed mb-8 max-w-2xl">
+        {site.descriptionId}
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a
+          href="/id/releases/"
+          class="inline-flex items-center justify-center px-6 py-3 bg-terracotta text-white font-body text-sm font-medium rounded no-underline hover:bg-terracotta/90 transition-colors duration-200"
+        >
+          Lihat rilis
+        </a>
+        <a
+          href={site.repo}
+          class="inline-flex items-center justify-center px-6 py-3 border border-line text-ink font-body text-sm font-medium rounded no-underline hover:border-stone transition-colors duration-200"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Kontribusi di GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Releases Grid -->
+  <section class="border-t border-line bg-card py-20 sm:py-24" aria-labelledby="featured-heading">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 mb-12">
+        <div>
+          <h2 id="featured-heading" class="font-heading text-3xl font-semibold text-ink mb-2">
+            Rilis unggulan
+          </h2>
+          <p class="text-stone">
+            Perkakas desktop sumber terbuka dan layanan mandiri yang ringan.
+          </p>
+        </div>
+        <a href="/id/releases/" class="text-sm font-medium text-terracotta hover:text-forest transition-colors duration-200">
+          Semua rilis &rarr;
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {releases.map((rel) => (
+          <ReleaseCard
+            title={rel.data.title}
+            kind={rel.data.kind}
+            version={rel.data.version}
+            status={rel.data.status}
+            tagline={rel.data.tagline}
+            slug={rel.id.replace(/\.md$/, "")}
+            lang="id"
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Principles Section -->
+  <section class="border-t border-line py-20 sm:py-24" aria-labelledby="principles-heading">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-xl mb-12">
+        <h2 id="principles-heading" class="font-heading text-3xl font-semibold text-ink mb-3">
+          Prinsip
+        </h2>
+        <p class="text-stone">
+          Setiap karya yang kami terbitkan mengikuti nilai desain dan rekayasa yang terarah.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="p-6 bg-card border border-line rounded-lg">
+          <h3 class="font-heading text-lg font-semibold text-ink mb-2">Ringan</h3>
+          <p class="text-sm text-stone leading-relaxed">
+            Mulai cepat, penggunaan memori minimal, dan tanpa proses latar belakang yang sia-sia.
+          </p>
+        </div>
+        <div class="p-6 bg-card border border-line rounded-lg">
+          <h3 class="font-heading text-lg font-semibold text-ink mb-2">Terbuka</h3>
+          <p class="text-sm text-stone leading-relaxed">
+            Lisensi bebas, repositori publik, serta kendali penuh pengguna atas data mereka.
+          </p>
+        </div>
+        <div class="p-6 bg-card border border-line rounded-lg">
+          <h3 class="font-heading text-lg font-semibold text-ink mb-2">Dirancang</h3>
+          <p class="text-sm text-stone leading-relaxed">
+            Tipografi kuat, tata letak rapi, dan interaksi yang dipikirkan dengan teliti.
+          </p>
+        </div>
+        <div class="p-6 bg-card border border-line rounded-lg">
+          <h3 class="font-heading text-lg font-semibold text-ink mb-2">Ramah kontributor</h3>
+          <p class="text-sm text-stone leading-relaxed">
+            Panduan yang jelas, peta jalan transparan, dan ruang ramah untuk pengembang baru.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Roadmap Strip -->
+  <section class="border-t border-line bg-card py-16" aria-labelledby="roadmap-strip-heading">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="p-8 border border-line rounded-lg bg-sand/30 flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div>
+          <span class="inline-block px-2.5 py-0.5 text-xs font-mono font-medium uppercase tracking-wide rounded bg-sand text-stone mb-2">
+            Peta Jalan
+          </span>
+          <h2 id="roadmap-strip-heading" class="font-heading text-2xl font-semibold text-ink mb-2">
+            Yang sedang kami kerjakan
+          </h2>
+          <p class="text-stone text-sm max-w-xl">
+            [PLACEHOLDER: Memantau siklus rilis terkini, layanan mandiri yang sedang disiapkan, dan masukan komunitas.]
+          </p>
+        </div>
+        <a
+          href="/id/roadmap/"
+          class="inline-flex items-center px-4 py-2 border border-line bg-card text-ink font-body text-sm font-medium rounded no-underline hover:border-stone transition-colors duration-200 whitespace-nowrap self-start md:self-center"
+        >
+          Lihat peta jalan publik &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contributor Call to Action -->
+  <section class="border-t border-line py-20 sm:py-24" aria-labelledby="cta-heading">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <h2 id="cta-heading" class="font-heading text-3xl font-semibold text-ink mb-4">
+          Ikut berkontribusi
+        </h2>
+        <p class="text-stone text-lg leading-relaxed mb-8">
+          Colophon adalah inisiatif sumber terbuka independen. Kami menyambut kontribusi kode, perbaikan dokumentasi, laporan kendala, dan diskusi ide.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a
+            href="/id/docs/contributing/"
+            class="inline-flex items-center px-5 py-2.5 bg-terracotta text-white font-body text-sm font-medium rounded no-underline hover:bg-terracotta/90 transition-colors duration-200"
+          >
+            Baca panduan kontributor
+          </a>
+          <a
+            href={site.repo}
+            class="inline-flex items-center px-5 py-2.5 border border-line text-ink font-body text-sm font-medium rounded no-underline hover:border-stone transition-colors duration-200"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Lihat repositori
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+

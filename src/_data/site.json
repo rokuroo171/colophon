@@ -1,0 +1,11 @@
+{
+  "name": "Colophon",
+  "tagline": "Open-source software, carefully crafted.",
+  "taglineId": "Perangkat lunak sumber terbuka, dirancang dengan teliti.",
+  "url": "https://colophon.example.org",
+  "repo": "https://github.com/colophon",
+  "description": "An indie publisher of open-source desktop apps, services, and tools.",
+  "descriptionId": "Penerbit independen aplikasi desktop, layanan, dan perkakas sumber terbuka.",
+  "author": "Colophon"
+}
+

@@ -1,0 +1,40 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import site from "../../../config/site.json";
+---
+
+<BaseLayout title="Peta Jalan dan Catatan Perubahan" description={`Peta jalan publik dan kabar proyek ${site.name}.`} lang="id">
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+    <h1 class="font-heading text-3xl sm:text-4xl font-semibold text-ink mb-6">Peta Jalan dan Catatan Perubahan</h1>
+    <p class="text-stone text-lg leading-relaxed mb-12">
+      [PLACEHOLDER: Tinjauan publik tentang apa yang sedang kami bangun, rencana ke depan, dan rilis terkini di semua proyek.]
+    </p>
+
+    <div class="space-y-6">
+      <div class="p-6 bg-card border border-line rounded-lg">
+        <span class="inline-block px-2.5 py-0.5 text-xs font-mono font-medium uppercase tracking-wide rounded bg-forest/10 text-forest mb-2">
+          Sedang dikerjakan
+        </span>
+        <h2 class="font-heading text-lg font-semibold text-ink mb-2">
+          [PLACEHOLDER: Kerangka website fase 1 dan infrastruktur rilis]
+        </h2>
+        <p class="text-sm text-stone leading-relaxed">
+          [PLACEHOLDER: Membangun fondasi website, perutean multibahasa, komponen aksesibel, dan katalog rilis.]
+        </p>
+      </div>
+
+      <div class="p-6 bg-card border border-line rounded-lg">
+        <span class="inline-block px-2.5 py-0.5 text-xs font-mono font-medium uppercase tracking-wide rounded bg-sand text-stone mb-2">
+          Mendatang
+        </span>
+        <h2 class="font-heading text-lg font-semibold text-ink mb-2">
+          [PLACEHOLDER: Pencarian statis dan filter rilis interaktif]
+        </h2>
+        <p class="text-sm text-stone leading-relaxed">
+          [PLACEHOLDER: Menambahkan fitur pencarian instan dan penyaringan kategori untuk katalog rilis.]
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+

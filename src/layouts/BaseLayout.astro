@@ -1,0 +1,54 @@
+---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import SkipLink from "../components/SkipLink.astro";
+import site from "../config/site.json";
+
+interface Props {
+  title?: string;
+  description?: string;
+  lang?: string;
+}
+
+const { title, description, lang = "en" } = Astro.props;
+const isId = lang === "id";
+
+const pageTitle = title ? `${title} | ${site.name}` : site.name;
+const pageDescription = description || (isId ? site.descriptionId : site.description);
+
+const pathname = Astro.url.pathname;
+const cleanPath = pathname.replace(/^\/id(\/|$)/, "/") || "/";
+const enUrl = new URL(cleanPath === "/" ? "/" : cleanPath, site.url).href;
+const idUrl = new URL(cleanPath === "/" ? "/id/" : `/id${cleanPath}`, site.url).href;
+---
+
+<!doctype html>
+<html lang={lang} dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+
+    <!-- hreflang tags -->
+    <link rel="alternate" hreflang="en" href={enUrl} />
+    <link rel="alternate" hreflang="id" href={idUrl} />
+    <link rel="alternate" hreflang="x-default" href={enUrl} />
+
+    <link rel="icon" href="/assets/icon.png" type="image/png" />
+  </head>
+  <body class="min-h-screen flex flex-col bg-paper text-ink font-body">
+    <SkipLink lang={lang} />
+    <Header lang={lang} />
+
+    <main id="main-content" class="flex-1">
+      <slot />
+    </main>
+
+    <Footer lang={lang} />
+
+    <script src="../scripts/main.js"></script>
+  </body>
+</html>
+

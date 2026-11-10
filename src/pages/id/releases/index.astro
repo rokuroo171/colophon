@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import ReleaseCard from "../../../components/ReleaseCard.astro";
+import { getCollection } from "astro:content";
+
+const releases = await getCollection("releases_id");
+---
+
+<BaseLayout title="Rilis" description="Semua rilis yang diterbitkan oleh Colophon." lang="id">
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+    <div class="max-w-2xl mb-12">
+      <h1 class="font-heading text-4xl sm:text-5xl font-semibold text-ink mb-4">
+        Rilis
+      </h1>
+      <p class="text-stone text-lg leading-relaxed">
+        [PLACEHOLDER: Semua aplikasi desktop, layanan mandiri, dan perkakas pengembang sumber terbuka dari Colophon.]
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {releases.map((rel) => (
+        <ReleaseCard
+          title={rel.data.title}
+          kind={rel.data.kind}
+          version={rel.data.version}
+          status={rel.data.status}
+          tagline={rel.data.tagline}
+          slug={rel.id.replace(/\.md$/, "")}
+          lang="id"
+        />
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+

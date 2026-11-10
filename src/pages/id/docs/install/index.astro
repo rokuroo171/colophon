@@ -1,0 +1,23 @@
+---
+import BaseLayout from "../../../../layouts/BaseLayout.astro";
+import site from "../../../../config/site.json";
+---
+
+<BaseLayout title="Instalasi dan Self-host" description={`Panduan instalasi rilis ${site.name}.`} lang="id">
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+    <h1 class="font-heading text-3xl sm:text-4xl font-semibold text-ink mb-6">Instalasi dan Self-host</h1>
+    <p class="text-stone text-lg leading-relaxed mb-6">
+      [PLACEHOLDER: Ikhtisar dan instruksi umum untuk memasang rilis desktop dan menerapkan layanan mandiri yang diterbitkan oleh {site.name}.]
+    </p>
+    <div class="p-6 bg-card border border-line rounded-lg">
+      <h2 class="font-heading text-xl font-semibold text-ink mb-3">Filosofi self-hosting</h2>
+      <p class="text-stone text-sm leading-relaxed mb-4">
+        [PLACEHOLDER: Semua layanan menyediakan image kontainer yang siap pakai, berkas konfigurasi sederhana, dan panduan penyimpanan data yang jelas.]
+      </p>
+      <a href="/id/releases/" class="text-sm font-medium text-terracotta hover:text-forest transition-colors duration-200">
+        Jelajahi rilis untuk melihat petunjuk instalasi spesifik &rarr;
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
